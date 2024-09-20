@@ -1,0 +1,389 @@
+import React, { useState, useEffect } from 'react';
+import './Sidebar.css';
+
+// // Secondary Sidebar for "Welcome"
+// const WelcomeSidebar = ({ welcomeMessage, description, onSave, onDiscard, onClose, onContentChange }) => {
+//   const [title, setTitle] = useState(welcomeMessage);
+//   const [desc, setDesc] = useState(description);
+//   const [buttonText, setButtonText] = useState('Start');
+
+//   useEffect(() => {
+//     setTitle(welcomeMessage);
+//     setDesc(description);
+//   }, [welcomeMessage, description]);
+
+//   const handleSave = () => {
+//     onContentChange(title, desc);
+//     onSave();
+//   };
+
+//   return (
+//     <div className="secondary-sidebar">
+//       <button className="close-btn" onClick={onClose}>Close</button>
+//       <h2>Settings</h2>
+//       <div className="form-group">
+//         <label>Title</label>
+//         <input
+//           type="text"
+//           value={title}
+//           onChange={(e) => setTitle(e.target.value)}
+//         />
+//       </div>
+//       <div className="form-group">
+//         <label>Description</label>
+//         <textarea
+//           value={desc}
+//           onChange={(e) => setDesc(e.target.value)}
+//         ></textarea>
+//       </div>
+//       <div className="form-group">
+//         <label>Button Text</label>
+//         <input
+//           type="text"
+//           value={buttonText}
+//           onChange={(e) => setButtonText(e.target.value)}
+//         />
+//       </div>
+//       <div className="form-group">
+//         <label>Upload Image</label>
+//         <input type="file" />
+//       </div>
+//       <button className="save-btn" onClick={handleSave}>Save</button>
+//       <button className="discard-btn" onClick={onDiscard}>Discard</button>
+//     </div>
+//   );
+// };
+
+
+const WelcomeSidebar = ({ welcomeMessage, description, onSave, onDiscard, onClose, onContentChange }) => {
+  const [title, setTitle] = useState(welcomeMessage);
+  const [desc, setDesc] = useState(description);
+  const [buttonText, setButtonText] = useState('Start');
+
+
+  useEffect(() => {
+    setTitle(welcomeMessage);
+    setDesc(description);
+  }, [welcomeMessage, description]);
+
+  const handleTitleChange = (e) => {
+    const newTitle = e.target.value;
+    setTitle(newTitle);
+    onContentChange(newTitle, desc); // Update the parent state
+  };
+
+  const handleDescChange = (e) => {
+    const newDesc = e.target.value;
+    setDesc(newDesc);
+    onContentChange(title, newDesc); // Update the parent state
+  };
+
+  const handleSave = () => {
+    onSave();
+  };
+
+  return (
+    <div className="secondary-sidebar">
+      <button className="close-btn" onClick={onClose}>Close</button>
+      <h2>Settings</h2>
+      <div className="form-group">
+        <label>Title</label>
+        <input
+          type="text"
+          value={title}
+          onChange={handleTitleChange} // Use the new handler
+        />
+      </div>
+      <div className="form-group">
+        <label>Description</label>
+        <textarea
+          value={desc}
+          onChange={handleDescChange} // Use the new handler
+        ></textarea>
+      </div>
+      {/* Other sidebar elements remain unchanged */}
+    </div>
+  );
+};
+
+
+
+// Secondary Sidebar for "Field 2"
+const Field2Sidebar = ({ onSave, onDiscard, onClose }) => {
+  return (
+    <div className="secondary-sidebar">
+      <button className="close-btn" onClick={onClose}>Close</button>
+      <h2>Settings</h2>
+      <h3>Email</h3>
+      <div className="form-group">
+        <label>Title</label>
+        <input type="text" />
+      </div>
+      <div className="form-group">
+        <label>Description</label>
+        <textarea></textarea>
+      </div>
+      <div className="form-group">
+        <label>Required</label>
+        <input type="checkbox" />
+      </div>
+      <button className="save-btn" onClick={onSave}>Save</button>
+      <button className="discard-btn" onClick={onDiscard}>Discard</button>
+    </div>
+  );
+};
+
+const Sidebar = ({ onFieldClick, onContentChange, welcomeMessage, description }) => {
+  const [fields, setFields] = useState([{ id: 1, name: 'Welcome' }, { id: 2, name: 'Field 2' }]);
+  const [nextId, setNextId] = useState(3);
+  const [showWelcomeSidebar, setShowWelcomeSidebar] = useState(false);
+  const [showField2Sidebar, setShowField2Sidebar] = useState(false);
+
+  // Function to add a new field
+  const addField = () => {
+    const newField = { id: nextId, name: `Field ${nextId}` };
+    setFields((prevFields) => [...prevFields, newField]);
+    setNextId(nextId + 1);
+  };
+
+  // Function to handle field click and pass it to the parent component
+  const handleFieldClick = (field) => {
+    if (field.name === 'Welcome') {
+      setShowWelcomeSidebar(true);
+    } else if (field.name === 'Field 2') {
+      setShowField2Sidebar(true);
+    } else {
+      onFieldClick(field); // Pass the clicked field to the parent component
+    }
+  };
+
+  // Handlers for the Welcome Sidebar
+  const handleWelcomeSave = () => {
+    console.log('Welcome Save button clicked');
+    setShowWelcomeSidebar(false);
+  };
+
+  const handleWelcomeDiscard = () => {
+    console.log('Welcome Discard button clicked');
+    setShowWelcomeSidebar(false);
+  };
+
+  const handleCloseWelcomeSidebar = () => {
+    setShowWelcomeSidebar(false);
+  };
+
+  // Handlers for the Field 2 Sidebar
+  const handleField2Save = () => {
+    console.log('Field 2 Save button clicked');
+    setShowField2Sidebar(false);
+  };
+
+  const handleField2Discard = () => {
+    console.log('Field 2 Discard button clicked');
+    setShowField2Sidebar(false);
+  };
+
+  const handleCloseField2Sidebar = () => {
+    setShowField2Sidebar(false);
+  };
+
+  return (
+    <div className="sidebar open">
+      <button className="toggle-btn">Close</button>
+      <ul className="sidebar-items">
+        {fields.map((field) => (
+          <li key={field.id} onClick={() => handleFieldClick(field)}>
+            {field.name}
+          </li>
+        ))}
+      </ul>
+      <button className="add-field-btn" onClick={addField}>Add Field</button>
+      {showWelcomeSidebar && (
+        <WelcomeSidebar
+          welcomeMessage={welcomeMessage}
+          description={description}
+          onSave={handleWelcomeSave}
+          onDiscard={handleWelcomeDiscard}
+          onClose={handleCloseWelcomeSidebar}
+          onContentChange={onContentChange}
+        />
+      )}
+      {showField2Sidebar && (
+        <Field2Sidebar
+          onSave={handleField2Save}
+          onDiscard={handleField2Discard}
+          onClose={handleCloseField2Sidebar}
+        />
+      )}
+    </div>
+  );
+};
+
+export default Sidebar;
+
+
+
+
+// import React, { useState } from 'react';
+// import './Sidebar.css';
+
+// // Secondary Sidebar for "Welcome"
+// const WelcomeSidebar = ({ welcomeMessage, description, onSave, onDiscard, onClose, onContentChange }) => {
+//   const [title, setTitle] = useState(welcomeMessage);
+//   const [desc, setDesc] = useState(description);
+//   const [buttonText, setButtonText] = useState('Start');
+
+//   const handleSave = () => {
+//     onContentChange(title, desc);
+//     onSave();
+//   };
+
+//   return (
+//     <div className="secondary-sidebar">
+//       <button className="close-btn" onClick={onClose}>Close</button>
+//       <h2>Settings</h2>
+//       <div className="form-group">
+//         <label>Title</label>
+//         <input
+//           type="text"
+//           value={title}
+//           onChange={(e) => setTitle(e.target.value)}
+//         />
+//       </div>
+//       <div className="form-group">
+//         <label>Description</label>
+//         <textarea
+//           value={desc}
+//           onChange={(e) => setDesc(e.target.value)}
+//         ></textarea>
+//       </div>
+//       <div className="form-group">
+//         <label>Button Text</label>
+//         <input
+//           type="text"
+//           value={buttonText}
+//           onChange={(e) => setButtonText(e.target.value)}
+//         />
+//       </div>
+//       <div className="form-group">
+//         <label>Upload Image</label>
+//         <input type="file" />
+//       </div>
+//       <button className="save-btn" onClick={handleSave}>Save</button>
+//       <button className="discard-btn" onClick={onDiscard}>Discard</button>
+//     </div>
+//   );
+// };
+
+// // Secondary Sidebar for "Field 2"
+// const Field2Sidebar = ({ onSave, onDiscard, onClose }) => {
+//   return (
+//     <div className="secondary-sidebar">
+//       <button className="close-btn" onClick={onClose}>Close</button>
+//       <h2>Settings</h2>
+//       <h3>Email</h3>
+//       <div className="form-group">
+//         <label>Title</label>
+//         <input type="text" />
+//       </div>
+//       <div className="form-group">
+//         <label>Description</label>
+//         <textarea></textarea>
+//       </div>
+//       <div className="form-group">
+//         <label>Required</label>
+//         <input type="checkbox" />
+//       </div>
+//       <button className="save-btn" onClick={onSave}>Save</button>
+//       <button className="discard-btn" onClick={onDiscard}>Discard</button>
+//     </div>
+//   );
+// };
+
+// const Sidebar = ({ onFieldClick, onContentChange, welcomeMessage, description }) => {
+//   const [fields, setFields] = useState([{ id: 1, name: 'Welcome' }, { id: 2, name: 'Field 2' }]);
+//   const [nextId, setNextId] = useState(3);
+//   const [showWelcomeSidebar, setShowWelcomeSidebar] = useState(false);
+//   const [showField2Sidebar, setShowField2Sidebar] = useState(false);
+
+//   // Function to add a new field
+//   const addField = () => {
+//     const newField = { id: nextId, name: `Field ${nextId}` };
+//     setFields((prevFields) => [...prevFields, newField]);
+//     setNextId(nextId + 1);
+//   };
+
+//   // Function to handle field click and pass it to the parent component
+//   const handleFieldClick = (field) => {
+//     if (field.name === 'Welcome') {
+//       setShowWelcomeSidebar(true);
+//     } else if (field.name === 'Field 2') {
+//       setShowField2Sidebar(true);
+//     } else {
+//       onFieldClick(field); // Pass the clicked field to the parent component
+//     }
+//   };
+
+//   // Handlers for the Welcome Sidebar
+//   const handleWelcomeSave = () => {
+//     console.log('Welcome Save button clicked');
+//     setShowWelcomeSidebar(false);
+//   };
+
+//   const handleWelcomeDiscard = () => {
+//     console.log('Welcome Discard button clicked');
+//     setShowWelcomeSidebar(false);
+//   };
+
+//   const handleCloseWelcomeSidebar = () => {
+//     setShowWelcomeSidebar(false);
+//   };
+
+//   // Handlers for the Field 2 Sidebar
+//   const handleField2Save = () => {
+//     console.log('Field 2 Save button clicked');
+//     setShowField2Sidebar(false);
+//   };
+
+//   const handleField2Discard = () => {
+//     console.log('Field 2 Discard button clicked');
+//     setShowField2Sidebar(false);
+//   };
+
+//   const handleCloseField2Sidebar = () => {
+//     setShowField2Sidebar(false);
+//   };
+
+//   return (
+//     <div className="sidebar open">
+//       <button className="toggle-btn">Close</button>
+//       <ul className="sidebar-items">
+//         {fields.map((field) => (
+//           <li key={field.id} onClick={() => handleFieldClick(field)}>
+//             {field.name}
+//           </li>
+//         ))}
+//       </ul>
+//       <button className="add-field-btn" onClick={addField}>Add Field</button>
+//       {showWelcomeSidebar && (
+//         <WelcomeSidebar
+//           welcomeMessage={welcomeMessage}
+//           description={description}
+//           onSave={handleWelcomeSave}
+//           onDiscard={handleWelcomeDiscard}
+//           onClose={handleCloseWelcomeSidebar}
+//           onContentChange={onContentChange}
+//         />
+//       )}
+//       {showField2Sidebar && (
+//         <Field2Sidebar
+//           onSave={handleField2Save}
+//           onDiscard={handleField2Discard}
+//           onClose={handleCloseField2Sidebar}
+//         />
+//       )}
+//     </div>
+//   );
+// };
+
+// export default Sidebar;

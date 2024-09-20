@@ -1,0 +1,92 @@
+.welcome-sidebar {
+  position: absolute; /* Change to absolute */
+  top: 0;
+  left: 0;
+  width: 300px; /* Set width for the sidebar */
+  height: 100%; /* Full height */
+  background: white;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3); /* Add shadow for depth */
+  z-index: 999; /* Ensure it overlaps the main sidebar */
+}
+
+.sidebar{
+  padding: 1rem;
+}
+
+.close-button {
+  background-color: transparent;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+/* Sidebar.css */
+.sidebar-overlay {
+  /* position: fixed; 
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); 
+  display: flex;
+  justify-content: center;
+  align-items: center; */
+  position: absolute; /* Change to absolute */
+  top: 0;
+  left: 0;
+  width: 208px; /* Set width for the sidebar */
+  /* height: 100%; Full height */
+  background: white;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3); /* Add shadow for depth */
+  z-index: 1000; /* Ensure it appears above other elements */
+}
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.button-group button {
+  padding: 8px 12px;
+  margin: 5px;
+  cursor: pointer;
+  /* background-color: #0000000c; */
+}
+
+.dashboard{
+  font-weight: 500;
+  font-size: .75rem;
+  line-height: 1rem;
+  /* margin-left: 1rem; */
+}
+
+.steps{
+  font-weight: 600;
+  font-size: .875rem;
+  line-height: 1.25rem;
+  /* margin-left: 1rem; */
+  margin-bottom: .5rem;
+  margin-top: 3rem;
+}
+.steps2{
+  --tw-text-opacity: 1;
+  color: rgb(113, 113, 122);
+  font-size: .75rem;
+  line-height: 1rem;
+  margin-top: 0;
+}
+
+.steps-icon {
+  color: rgb(104, 104, 112);
+  margin-right: 8px; /* Add space between icon and text */
+  font-size: .8rem; /* Adjust the icon size if necessary */
+}

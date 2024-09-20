@@ -1,0 +1,123 @@
+/* FieldSidebar.css */
+.field-sidebar {
+  background-color: #ffffff;
+  border-radius: 8px;
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
+  width: 80%; /* Adjust as needed */
+  max-width: 500px; /* Limit max width */
+
+
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 267px;
+    /* padding: 20px; */
+    height: 100%;
+    z-index: 2000;
+    padding-left: 1rem;
+    padding-top: 1rem;
+
+    
+  }
+  
+  .close-button {
+    background-color: transparent;
+    border: 2px solid #e5e7eb; /* Border with color */
+    /* border-radius: 4px; Adjust for square shape (optional) */
+    cursor: pointer;
+    position: absolute;
+    border-radius: 8px;
+    top: 25px;
+    right: 10px;
+    font-size: 20px; /* Adjust size of the icon */
+    color: #838383; /* Set the color of the icon */
+    /* padding: 2px; Space inside the button */
+    width: 30px; /* Set the width of the square */
+    height: 30px; /* Set the height of the square */
+    display: flex; /* Center the icon inside the square */
+    justify-content: center; /* Center the icon horizontally */
+    align-items: center; /* Center the icon vertically */
+  }
+  .close-button:hover {
+    background-color: #ece9e9; /* Change color on hover */
+    border: 2px solid #ece9e9; /* Border with color */
+
+  }
+  
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .field-sidebar
+  .settings{
+    font-weight: 600;
+    font-size: .875rem;
+    line-height: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .field-sidebar
+  label{
+    font-weight: 500;
+    font-size: .875rem;
+    line-height: 1.25rem;
+  }
+
+  
+
+  .form-group input,
+  .form-group textarea {
+    font-weight: 500;
+    font-size: .75rem;
+    line-height: 1.25rem;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid rgb(209 213 219 );
+    width: 90%;
+  }
+
+  /* .save-btn, .discard-btn {
+    margin-right: 10px;
+  } */
+   .field-sidebar
+  .save-btn{
+    padding-left: 2rem;
+    padding-right: 2rem;
+    border-style: none;
+    background-color: black;
+    color: white;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: .75rem;
+    line-height: 1rem;
+  }
+
+  .field-sidebar
+  .discard-btn{
+    padding-left: 2rem;
+    padding-right: 2rem;
+    background-color: #f4f4f4;
+    color:rgb(239, 59, 89);
+    border-style: none;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: .75rem;
+    line-height: 1rem;
+
+  }
+  .field-sidebar
+  .discard-btn:hover{
+    background-color: #fda6a6;
+    /* border-radius: 50%; */
+  }
+  .field-sidebar
+  .save-btn:hover{
+    background-color: #201f1f;
+  }
+
+  .settings-icon {
+    margin-right: 8px; /* Adjust the spacing as needed */
+    font-size: .875rem; /* Adjust icon size if needed */
+  }
+  
