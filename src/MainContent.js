@@ -45,7 +45,7 @@ const MainContent = ({ field, onContentChange, selectedField }) => {
   return (
     <div className="main-content">
      <div className="content-container">
-     <div>
+     <div className='container2'>
       {/* title field */}
       <div className="form-group">
         <label>{selectedField === 'welcome' ? 'Welcome Title' : 'Field Title'}</label>

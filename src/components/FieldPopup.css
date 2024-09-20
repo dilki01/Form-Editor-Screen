@@ -32,3 +32,47 @@
   .field-type-list li:hover {
     font-weight: bold;
   }
+
+  .close-button {
+    position: absolute;  /* Position the button absolutely within the popup */
+    top: 10px;          /* Distance from the top */
+    right: 10px;       /* Distance from the right */
+    background: none;  /* Remove default button background */
+    border: none;      /* Remove border */
+    cursor: pointer;   /* Change cursor to pointer */
+    font-size: 1.5rem; /* Adjust icon size if needed */
+  }
+
+
+  
+  .popup-content {
+    position: relative; /* Enable positioning for the close button */
+    /* Your existing styles */
+  }
+  
+  .close-button {
+    position: absolute;  /* Position the button absolutely within the popup */
+    top: 10px;          /* Distance from the top */
+    right: 10px;       /* Distance from the right */
+    background: none;  /* Remove default button background */
+    border: none;      /* Remove border */
+    cursor: pointer;   /* Change cursor to pointer */
+    font-size: 1.5rem; /* Adjust icon size if needed */
+  }
+  
+  .field-type-list {
+    list-style-type: none; /* Remove default list styling */
+    padding: 0;           /* Remove padding */
+  }
+  
+  .field-type-list li {
+    display: flex;        /* Use flexbox for icon and text alignment */
+    align-items: center;  /* Center items vertically */
+    padding: 10px;       /* Add some padding */
+    cursor: pointer;      /* Change cursor to pointer */
+  }
+  
+  .field-type-list li:hover {
+    background-color: #f0f0f0; /* Add hover effect */
+  }
+  

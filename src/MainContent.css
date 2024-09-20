@@ -33,7 +33,7 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   border-style: none;
-}
+} 
 
 
 .main-content
@@ -69,27 +69,33 @@
   background-color: #dc3545;
 }
 
-.main-content
-#title {
-  /* font-weight: bold; */
+/* Title textarea with a max height of 4 lines */
+.main-content #title {
   font-size: 38px;
-  overflow-y: hidden;
-  resize: none;
-  height: 61.6px;
-  min-height: 61.6px;
-  max-height: 301.6px;
+  overflow-y: auto;         /* Allows scrolling if the content exceeds the height */
+  resize: none;             /* Prevents resizing */
+  height: 61.6px;           /* Approximate height for 1 line */
+  /* min-height: 246.4px;      Approximate height for 4 lines */
+  max-height: 246.4px;      /* Fixes max height to 4 lines */
   font-weight: 700;
+  word-wrap: break-word;    /* Breaks words to avoid overflow */
 }
 
-.main-content
-#description{
+/* Description textarea with a max height of 4 lines */
+.main-content #description {
   font-size: 1.75rem;
-  overflow-y: hidden;
-  resize: none;
-  height: 40.6px;
-  min-height: 40.6px;
-  max-height: 196.6px;
+  overflow-y: auto;         /* Allows scrolling if the content exceeds the height */
+  resize: none;             /* Prevents resizing */
+  height: 40.6px;           /* Approximate height for 1 line */
+  min-height: 162.4px;      /* Approximate height for 4 lines */
+  max-height: 162.4px;      /* Fixes max height to 4 lines */
+  line-height: 1.1;           /* Adjusts the space between lines */
+
+  word-wrap: break-word;    /* Breaks words to avoid overflow */
+  /* padding: 10px;              Adds padding around the text */
+
 }
+
 
 .main-content
 #email {
@@ -115,7 +121,8 @@
 .uploaded-image {
   width: 300px;           /* Set a fixed width */
   height: auto;           /* Maintain aspect ratio */
-  margin-left: 80px;      /* Add some space between the content and image */
+  margin-left: 100px;      /* Add some space between the content and image */
+  
   align-items: center;
 }
 
@@ -136,4 +143,8 @@
 .main-content
 .submitbtn:hover{
   background-color: #a5b1b8;
+}
+
+.container2{
+  width: 85%;
 }
